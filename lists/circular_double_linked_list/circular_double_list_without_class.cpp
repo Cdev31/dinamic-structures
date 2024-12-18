@@ -43,14 +43,6 @@ void insertAtEndToList( Node*& head, Node*& tail, int value ){
 
 }
 
-void insertPositionToList(){
-
-}
-
-void deletePositionNode(){
-
-}
-
 void printAscList( Node* head ){
     Node* currentNode = head->next;
 

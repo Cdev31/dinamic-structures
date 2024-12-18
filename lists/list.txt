@@ -1,0 +1,14 @@
+1-Simple Linked List
+2-Double Linked List
+3-Circular Simple Linked List
+4-Circular Double Linked List
+5-Skip List
+6-Linked Multiple List
+7-Priority Linked List
+8-XOR List
+9-Order Linked List
+10-Polinomic Linked List
+11-Sparse List
+12-Unrolled Linked List
+13-Circular Linked List by Josephus
+14-Tagged Linked List
