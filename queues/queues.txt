@@ -1,0 +1,5 @@
+-simple queue
+-double queue
+-circular queue
+-priority queue
+-queue per levels
