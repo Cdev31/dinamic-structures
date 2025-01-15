@@ -25,7 +25,7 @@ class LinkedList{
         }
         return counter;
     }
-   //metodos de insercion
+   // insert methods
     void insertAtEnd( int data ){
 
         Node* newNode = new Node( data );
@@ -63,17 +63,79 @@ class LinkedList{
         Node* newNode = new Node( data );
         Node* currentNode = head;
 
-        int counter = 0;
+        int counter = 1;
         while( currentNode->next != nullptr ){
             if( counter == ( position -1 )) break;
+            currentNode = currentNode->next;
             counter++;
         }
         newNode->next = currentNode->next;
         currentNode->next = newNode;
     }
 
+    // delete methods
+
+    void deleteAtBeginning( ){
+
+        if( head == nullptr ){
+            cout << "Empty list" << endl;
+            return;
+        }
+
+        Node* temporalNode = head;
+        head = head->next;
+
+        delete temporalNode;
+    }
+
+    void deleteAtEnd(){
+
+        if( head == nullptr ){
+            cout << "Empty list" << endl;
+            return;
+        }
+
+        if( head->next == nullptr ){
+            delete head;
+            return;
+        }
+
+        Node* currentNode = head;
+
+        while( currentNode->next->next != nullptr ){
+            currentNode = currentNode->next;
+        }
+
+        delete currentNode->next;
+
+        currentNode->next = nullptr;
+
+    }
+
+    void deleteAtPosition( int position ){
+
+        if( position == 0 || position == 1 ){
+            cout << "Invalid position" << endl;
+            return;
+        }
+
+        Node* currentNode = head;
+    
+        int counter = 1;
+        while( currentNode->next != nullptr ){
+            if( counter == ( position -1 )) break;
+            currentNode = currentNode->next;
+            counter++;
+        }
+
+        Node* temporalNode = currentNode->next;
+        
+        currentNode->next = temporalNode->next;
+        delete  temporalNode;
+    }
 
 
+    // print methods
     void print(){
         
         if( head == nullptr ){
@@ -97,8 +159,9 @@ int main(int argc, char const *argv[])
 {   
     LinkedList firstList = LinkedList();
     LinkedList secondList = LinkedList();
-    LinkedList threthList = LinkedList();
+    LinkedList thirdList = LinkedList();
 
+    cout << "evaluacion de metodos de insercion" << endl;
     //insertar al inicio
     firstList.insertAtBeginning(3);
     firstList.insertAtBeginning(5);
@@ -118,10 +181,50 @@ int main(int argc, char const *argv[])
     secondList.print();
 
     //insertar en una posicion
-    threthList.insertAtPosition(2,1);
+    thirdList.insertAtBeginning(2);
+    thirdList.insertAtBeginning(3);
+    thirdList.insertAtBeginning(4);
+    thirdList.insertAtPosition(2,2);
 
-    threthList.print();
+    thirdList.print();
+    cout << endl;
 
- 
+    cout << "evaluacion de metodos de eliminacion" << endl;
+    // test about delete elements
+
+    LinkedList quarterList = LinkedList();
+
+    quarterList.insertAtBeginning(1);
+    quarterList.insertAtBeginning(2);
+    quarterList.insertAtBeginning(3);
+    quarterList.insertAtBeginning(4);
+    quarterList.insertAtBeginning(5);
+    quarterList.insertAtBeginning(6);
+    quarterList.insertAtBeginning(7);
+    quarterList.insertAtBeginning(8);
+    quarterList.insertAtBeginning(9);
+    quarterList.insertAtBeginning(10);
+
+    //before print
+    quarterList.print();
+
+    //delete first element
+    quarterList.deleteAtBeginning();
+
+    //after print
+    quarterList.print();
+
+    //delete final element
+    quarterList.deleteAtEnd();
+
+    //after print
+    quarterList.print();
+
+    //delet position
+    quarterList.deleteAtPosition(5);
+
+     //after print
+    quarterList.print();
+
     return 0;
 }
