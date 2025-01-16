@@ -12,8 +12,7 @@ struct Node {
 class LinkedList{
 
     Node* head = nullptr;
-    Node* tail = nullptr;
-
+    
     public:
     int size(){
         Node* currentNode = head;
