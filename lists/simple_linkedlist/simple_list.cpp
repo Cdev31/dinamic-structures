@@ -6,13 +6,15 @@ struct Node {
     int data;
     Node* next;
 
+    //constructor
     Node( int _data ): data( _data ), next(nullptr){} 
 }; 
 
 class LinkedList{
 
+    // head pointer
     Node* head = nullptr;
-    
+
     public:
     int size(){
         Node* currentNode = head;
@@ -24,6 +26,7 @@ class LinkedList{
         }
         return counter;
     }
+    
    // insert methods
     void insertAtEnd( int data ){
 
