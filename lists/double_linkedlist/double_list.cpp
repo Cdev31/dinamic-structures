@@ -69,6 +69,61 @@ class DoubleLinkedList{
         newNode->previus = currentNode;
         currentNode->next = newNode;
     }
+
+    // Delete methods
+
+    void deleteAtBiginning(){
+
+        Node* currentNode = head;
+        head = head->next;
+
+        delete currentNode;
+
+    }
+
+    void deleteAtEnd(){
+
+        if( head == nullptr){
+            cout << "Empty list" << "\n";
+            return;
+        }
+
+        Node* currentNode = tail;
+
+        if( tail = head){
+            head = nullptr;
+            tail = nullptr;
+        }
+        tail = tail->previus;
+        tail->next = nullptr;
+        
+        delete currentNode;       
+
+    }
+
+    void deleteAtPosition( int position ){
+
+        Node* currentNode = head;
+
+        int counter = 1;
+        while( true ){
+            if( counter == position ) break;
+            currentNode = currentNode->next;
+            counter++;
+        }
+
+        Node* temporalNode = currentNode;
+
+        currentNode->previus->next = currentNode->next;
+        currentNode->next->previus = currentNode->previus;
+
+        currentNode->next = nullptr;
+        currentNode->previus = nullptr;
+
+        delete temporalNode;
+
+
+    }
     
 
     // Print methods
@@ -83,13 +138,13 @@ class DoubleLinkedList{
     }
 
     void printDesc(){
-         Node* firstNode = tail;
+         Node* lastNode = tail;
 
-        while( firstNode->previus != nullptr ){
-            cout << firstNode->data << " ";
-            firstNode = firstNode->previus;
+        while( lastNode->previus != nullptr ){
+            cout << lastNode->data << " ";
+            lastNode = lastNode->previus;
         }
-        cout << firstNode->data << "\n";
+        cout << lastNode->data << "\n";
     }
 
 
@@ -122,6 +177,23 @@ int main(int argc, char const *argv[])
     firstList.insertAtPosition(3, 1);
 
     firstList.insertAtPosition(28,3);
+
+    firstList.printAsc();
+
+    //Pruebas de eliminacion
+
+    //eliminacion al inicio
+    firstList.deleteAtBiginning();
+
+    firstList.printAsc();
+
+    //eliminacion al final
+    firstList.deleteAtEnd();
+
+    firstList.printAsc();
+
+    //eliminacion posicion
+    firstList.deleteAtPosition(3);
 
     firstList.printAsc();
 
