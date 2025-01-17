@@ -19,7 +19,7 @@ class DoubleLinkedList{
 
     public: 
     // Insert methods
-    void insertAtbeginning( int data ){
+    void insertAtBeginning( int data ){
 
         Node* newNode = new Node( data );
         newNode->next = head;
@@ -72,7 +72,7 @@ class DoubleLinkedList{
 
     // Delete methods
 
-    void deleteAtBiginning(){
+    void deleteAtBeginning(){
 
         Node* currentNode = head;
         head = head->next;
@@ -164,11 +164,11 @@ int main(int argc, char const *argv[])
     firstList.printAsc();
 
     //inserciones normales adelante
-    firstList.insertAtbeginning(4);
-    firstList.insertAtbeginning(6);
-    firstList.insertAtbeginning(7);
-    firstList.insertAtbeginning(2);
-    firstList.insertAtbeginning(8);
+    firstList.insertAtBeginning(4);
+    firstList.insertAtBeginning(6);
+    firstList.insertAtBeginning(7);
+    firstList.insertAtBeginning(2);
+    firstList.insertAtBeginning(8);
 
     firstList.printAsc();
 
@@ -183,7 +183,7 @@ int main(int argc, char const *argv[])
     //Pruebas de eliminacion
 
     //eliminacion al inicio
-    firstList.deleteAtBiginning();
+    firstList.deleteAtBeginning();
 
     firstList.printAsc();
 
