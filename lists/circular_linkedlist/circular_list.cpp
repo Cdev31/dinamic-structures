@@ -70,6 +70,56 @@ class CircularLinkedList{
         currentNode->next = newNode; 
     }
 
+    //Delete methods
+    void deleteAtBeginning(){
+        
+        Node* firstNode = head;
+        head = firstNode->next;
+        tail->next = head;
+
+        delete firstNode;
+    }
+
+    void deleteAtEnd(){
+
+        Node* currentNode = head;
+
+        while( currentNode->next != tail ){
+            currentNode = currentNode->next;
+        }
+
+        Node* temporalNode = currentNode->next;
+
+        currentNode->next = head;
+        tail = currentNode;
+
+        delete temporalNode;
+    }
+
+    void deleteAtPosition( int position ){
+
+        if( position == 0 || position == 1 ){
+            cout << "Invalid position" << endl;
+            return;
+        }
+        
+        Node* currentNode = head;
+
+        int counter = 1;
+        while( currentNode->next != head ){
+            if( counter == ( position -1 ) ) break;
+            currentNode = currentNode->next;
+            counter++;
+        }
+
+        Node* temporalNode = currentNode->next;
+
+        currentNode->next = currentNode->next->next;
+
+        delete temporalNode;
+
+    }
+
     void print(){
         Node* currentNode = head;
 
@@ -96,11 +146,31 @@ int main(int argc, char const *argv[])
     firstList.insertAtBeginning(8);
     firstList.insertAtEnd(7);
     firstList.insertAtBeginning(2);
+    firstList.insertAtBeginning(9);
+    firstList.insertAtBeginning(4);
+    firstList.insertAtBeginning(1);
 
     firstList.print();
 
     //inserciones en posicion
     firstList.insertAtPosition(34, 4);
+
+    firstList.print();
+
+    //eliminacion inicio
+    firstList.deleteAtBeginning();
+
+    firstList.print();
+
+    //eliminacion al final
+
+    firstList.deleteAtEnd();
+
+    firstList.print();
+
+    //eliminacion posicion
+
+    firstList.deleteAtPosition(3);
 
     firstList.print();
 
