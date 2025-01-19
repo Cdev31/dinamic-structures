@@ -8,6 +8,7 @@ struct Node {
 
     //constructor
     Node( int _data ): data( _data ), next(nullptr){} 
+
 }; 
 
 class LinkedList{

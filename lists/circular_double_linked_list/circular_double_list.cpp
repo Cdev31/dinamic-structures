@@ -70,6 +70,60 @@ class CircularDoubleLinkedList{
         currentNode->previus = newNode;
     }
 
+    //delete methods
+    void deleteAtBeginnig(){
+
+        if( head == nullptr ){
+            cout << "Empty list" << "\n";
+            return;
+        }
+
+        Node* firstNode = head;
+
+        tail->next = firstNode->next;
+        firstNode->next->previus = tail;
+        head = firstNode->next;
+
+        delete firstNode;
+    }
+
+    void deleteAtEnd(){
+
+        if( head == nullptr ){
+            cout << "Empty list" << "\n";
+            return;
+        }
+
+        Node* lastNode = tail;
+
+        head->previus = lastNode->previus;
+        lastNode->previus->next = head;
+
+        delete lastNode;
+    }
+
+    void deleteAtPosition( int position ){
+
+        if( position == 0 || position == 1){
+            cout << "Empty list" << endl;
+            return;
+        }
+        
+        Node* currentNode = head;
+
+        int counter = 1;
+        while ( currentNode->next != head ){
+            if( counter == position )break;
+            currentNode = currentNode->next;
+            counter++;
+        }
+
+        currentNode->previus->next = currentNode->next;
+        currentNode->next->previus = currentNode->previus;
+
+        delete currentNode;
+    }
+
     void printAsc(){
         Node* currentNode = head;
 
@@ -122,6 +176,23 @@ int main(int argc, char const *argv[])
 
     firstList.printAsc();
     firstList.printDesc();
+
+    cout << "metodos de eliminacion" << "\n";
+   
+    //Eliminar inicio
+    firstList.deleteAtBeginnig();
+
+    firstList.printAsc();
+
+    //Eliminar final
+    firstList.deleteAtEnd();
+
+    firstList.printAsc();
+
+    //Eliminar posicion
+    firstList.deleteAtPosition(4);
+
+    firstList.printAsc();
 
     return 0;
 }
