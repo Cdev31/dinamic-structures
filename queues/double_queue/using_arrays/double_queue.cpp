@@ -17,7 +17,7 @@ class Deque{
 
     public:
     bool isFull(){
-        return ( rear + 1 ) == size;
+        return ( rear + 1 ) % size == front;
     }
 
     bool isEmpty(){
