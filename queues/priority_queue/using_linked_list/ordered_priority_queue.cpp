@@ -128,19 +128,21 @@ class DescendingPriorityQueue{
 
         Node* newNode = new Node( data );
 
-        if( isEmpty() || data < head->data){
+        if(isEmpty() || data > head->data ){
             newNode->next = head;
             head = newNode;
             return;
         }
-        Node* currentNode = head;
 
-        while( data <= currentNode->next->data && currentNode->next != nullptr ){
+        Node* currentNode = head;
+        
+        while( currentNode->next != nullptr && data <= currentNode->next->data ){
             currentNode = currentNode->next;
         }
-
+       
         newNode->next = currentNode->next;
         currentNode->next = newNode;
+         
     }
 
     void dequeue(){
@@ -180,12 +182,13 @@ class DescendingPriorityQueue{
     }
 
     void deleteAll(){
+
         Node* currentNode = head;
 
         while( currentNode->next != nullptr){
             Node* temporalNode = currentNode;
+            head = temporalNode->next;
             currentNode = currentNode->next;
-            head = currentNode;
             delete temporalNode;
         }
 
@@ -195,6 +198,11 @@ class DescendingPriorityQueue{
     }
 
     void print(){
+
+        if( isEmpty() ){
+            cout << "Queue is empty" << endl;
+            return;
+        }
         Node* currentNode = head;
 
         while ( currentNode->next != nullptr)
@@ -252,6 +260,18 @@ int main(int argc, char const *argv[])
     secondQueue.enqueue(9);
     secondQueue.enqueue(6);
     secondQueue.enqueue(8);
+
+    secondQueue.print();
+
+    cout << "Dequeue " << endl;
+
+    secondQueue.dequeue();
+
+    secondQueue.print();
+
+    cout << "Delete all" << endl;
+
+    secondQueue.deleteAll();
 
     secondQueue.print();
 
