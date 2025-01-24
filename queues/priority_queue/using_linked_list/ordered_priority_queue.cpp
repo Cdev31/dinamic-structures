@@ -135,7 +135,7 @@ class DescendingPriorityQueue{
         }
         Node* currentNode = head;
 
-        while( data <= currentNode->data && currentNode->next != nullptr ){
+        while( data <= currentNode->next->data && currentNode->next != nullptr ){
             currentNode = currentNode->next;
         }
 
