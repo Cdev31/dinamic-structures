@@ -266,6 +266,7 @@ int main(int argc, char const *argv[])
     cout << "Dequeue " << endl;
 
     secondQueue.dequeue();
+    secondQueue.dequeue();
 
     secondQueue.print();
 

@@ -9,8 +9,9 @@ struct Node{
     Node( int _data ): data( _data ), next( nullptr){}
 };
 
-class AscendingUnorderedPriorityQueue{
+class MinUnorderedPriorityQueue{
     Node* head = nullptr;
+    Node* tail = nullptr;
 
     public:
     bool isEmpty(){
@@ -21,16 +22,59 @@ class AscendingUnorderedPriorityQueue{
 
         Node* newNode = new Node( data );
 
-        newNode->next = nullptr;
-        head = newNode;
+        if( head == nullptr ) tail = newNode;
 
+        newNode->next = head;
+        head = newNode;
     }
 
-    void dequeue(){}
+    void dequeue(){
+        
+        Node* currentNode = head;
+        Node* minValue = head;
+        Node* previus;
+
+        while ( currentNode->next != nullptr ){
+            if( minValue->data > currentNode->next->data ){
+                minValue = currentNode->next;
+                previus = currentNode;
+            }
+            currentNode = currentNode->next;
+        }
+
+        if( minValue->data > tail->data ){
+            tail = minValue;
+            delete minValue->next;
+            return;
+        }
+    
+        if ( minValue == head ){
+            head = minValue->next;
+            delete minValue;
+            return;
+        }
+
+        previus->next = minValue->next;
+        delete minValue;
+    }
 
     void peek(){}
 
-    void print(){}
+    void print(){
+
+        if( isEmpty()){
+            cout << "Empty list" << endl;
+            return;
+        }
+
+        Node* currentNode = head;
+
+        while( currentNode->next != nullptr){
+            cout << currentNode->data << " ";
+            currentNode = currentNode->next;
+        }
+        cout << currentNode->data << endl;
+    }
 
     void deleteAll(){}
 };
@@ -39,7 +83,23 @@ class DescendingUnorderedPriorityQueue{};
 
 int main(int argc, char const *argv[])
 {
-    AscendingUnorderedPriorityQueue firstQueue = AscendingUnorderedPriorityQueue();
+    MinUnorderedPriorityQueue firstQueue = MinUnorderedPriorityQueue();
 
+    cout << "Enqueue " << endl;
+    firstQueue.enqueue(2);
+    firstQueue.enqueue(3);
+    firstQueue.enqueue(4);
+    firstQueue.enqueue(1);
+    firstQueue.enqueue(9);
+    firstQueue.enqueue(8);
+
+    firstQueue.print();
+
+    cout << "Dequeue min value" << endl;
+
+    firstQueue.dequeue();
+    firstQueue.dequeue();
+
+    firstQueue.print();
     return 0;
 }
